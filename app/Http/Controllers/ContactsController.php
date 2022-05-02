@@ -14,12 +14,12 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        $response = Http::withHeaders([
+        $contacts = Http::withHeaders([
             'Authorization' => 'Basic ' . base64_encode(env('MIX_USER') . ':' . env('MIX_PASSUSER')),
         ])->acceptJson()->get('https://egdev.crmforschools.net/api/contacts');
 
-        $total = $response['total'];
-        $contacts = $response['contacts'];
+        $total = $contacts['total'];
+        $contacts = $contacts['contacts'];
 
         // print_r($contacts);
         return view('home', ['total' => $total, 'contacts' => $contacts]);
@@ -33,7 +33,24 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $addcontact = Http::withHeaders([
+            'Authorization' => 'Basic ' . base64_encode(env('MIX_USER') . ':' . env('MIX_PASSUSER')),
+        ])->post('https://egdev.crmforschools.net/api/contacts/new', [
+            'campus' => 'developer',
+            'contact_type' => 'Lead',
+            'owner' => '40',
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address1' => $request->address1,
+            'address2' => $request->address2,
+            'birth_date' => $request->birthdate,
+            'city' => $request->city,
+            'state' => $request->state,
+            'nationality' => $request->nationality
+        ]);
+        return $addcontact;
     }
 
     /**
@@ -44,7 +61,12 @@ class ContactsController extends Controller
      */
     public function show($id)
     {
-        //
+        $contact = Http::withHeaders([
+            'Authorization' => 'Basic ' . base64_encode(env('MIX_USER') . ':' . env('MIX_PASSUSER')),
+        ])->acceptJson()->get('https://egdev.crmforschools.net/api/contacts/' . $id);
+
+
+        return view('edit', ['user' => $contact['contact']]);
     }
 
     /**
@@ -56,7 +78,24 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $editcontact = Http::withHeaders([
+            'Authorization' => 'Basic ' . base64_encode(env('MIX_USER') . ':' . env('MIX_PASSUSER')),
+        ])->patch('https://egdev.crmforschools.net/api/contacts/' . $id . '/edit', [
+            'campus' => 'developer',
+            'contact_type' => 'Lead',
+            'owner' => '40',
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address1' => $request->address1,
+            'address2' => $request->address2,
+            'birth_date' => $request->birthdate,
+            'city' => $request->city,
+            'state' => $request->state,
+            'nationality' => $request->nationality
+        ]);
+        return $editcontact;
     }
 
     /**
@@ -67,6 +106,10 @@ class ContactsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deletecontact = Http::withHeaders([
+            'Authorization' => 'Basic ' . base64_encode(env('MIX_USER') . ':' . env('MIX_PASSUSER')),
+        ])->delete('https://egdev.crmforschools.net/api/contacts/' . $id . '/delete');
+
+        return $deletecontact;
     }
 }

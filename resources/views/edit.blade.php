@@ -2,90 +2,142 @@
 @section('title','Edit contact')
 @section('content')
 
-<div>
-    <div class="container">
-        <h3>Personal information</h3>
-        <div class="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
-            <form action="" class="space-y-4">
-              <div>
-                <label class="sr-only" for="name">Name</label>
-                <input class="w-full p-3 text-sm border-gray-200 rounded-lg" placeholder="Name" type="text" id="name" />
+<div class="m-4">
+    <div class="w-full">
+
+        <div id="message-box" class="px-4 py-3 text-white bg-green-500 rounded-lg" style="display: none">
+            <p class="text-sm font-medium text-center">
+                Contact edited successfully.
+            </p>
+          </div>
+        <div class="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3 divide-y">
+            <div>
+            <h3 class="font-bold text-xl" >Personal information</h3>
+            </div>
+            <div>
+            <form class="space-y-4 my-4" id="editcontact" name="editcontact">
+                @csrf
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="firstname">
+                    <span class="text-xs font-medium text-gray-500" for="firstname">
+                      First name
+                    </span>
+
+                    <input value="{{$user['fields']['all']['firstname']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="firstname" name="firstname" type="text" placeholder="John" />
+                  </label>
+
+                  <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="lastname">
+                    <span class="text-xs font-medium text-gray-500" for="lastname">
+                      Last Name
+                    </span>
+
+                    <input value="{{$user['fields']['all']['lastname']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="lastname" name="lastname" type="text" placeholder="Doe" />
+                  </label>
+
+                  <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="email">
+                    <span class="text-xs font-medium text-gray-500" for="email">
+                      Email
+                    </span>
+
+                    <input value="{{$user['fields']['all']['email']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="email" name="email" type="email" placeholder="JohnDoe@example.com" />
+                  </label>
+
+                  <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="phone">
+                    <span class="text-xs font-medium text-gray-500" for="phone">
+                      Phone
+                    </span>
+
+                    <input value="{{$user['fields']['all']['phone']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="phone" name="phone" type="number" placeholder="00123456789" />
+                  </label>
               </div>
 
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div>
-                  <label class="sr-only" for="email">Email</label>
-                  <input
-                    class="w-full p-3 text-sm border-gray-200 rounded-lg"
-                    placeholder="Email address"
-                    type="email"
-                    id="email"
-                  />
-                </div>
+                <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="address1">
+                    <span class="text-xs font-medium text-gray-500" for="address1">
+                      Address 1
+                    </span>
 
-                <div>
-                  <label class="sr-only" for="phone">Phone</label>
-                  <input
-                    class="w-full p-3 text-sm border-gray-200 rounded-lg"
-                    placeholder="Phone Number"
-                    type="tel"
-                    id="phone"
-                  />
-                </div>
+                    <input value="{{$user['fields']['all']['address1']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="address1" name="address1" type="text" placeholder="address 1" />
+                  </label>
+
+                  <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="address2">
+                    <span class="text-xs font-medium text-gray-500" for="address2">
+                      Address 2
+                    </span>
+
+                    <input value="{{$user['fields']['all']['address2']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="address2" name="address2" type="text" placeholder="address 2" />
+                  </label>
               </div>
 
-              <div class="grid grid-cols-1 gap-4 text-center sm:grid-cols-3">
-                <div>
-                  <input class="sr-only" id="option1" type="radio" tabindex="-1" />
-                  <label for="option1" class="block w-full p-3 border border-gray-200 rounded-lg" tabindex="0">
-                    <span class="text-sm font-medium"> Option 1 </span>
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="city">
+                    <span class="text-xs font-medium text-gray-500" for="city">
+                     City
+                    </span>
+
+                    <input value="{{$user['fields']['all']['city']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="city" name="city" type="text" placeholder="Montreal" />
+                  </label>
+
+                  <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="state">
+                    <span class="text-xs font-medium text-gray-500" for="state">
+                      State
+                    </span>
+
+                    <input value="{{$user['fields']['all']['city']}}" class="w-full p-0 text-sm border-none focus:ring-0" id="state" name="state" type="text" placeholder="LA" />
+                  </label>
+
+                  <label class="relative block p-3 border-2 border-gray-200 rounded-lg" for="nationality">
+                    <span class="text-xs font-medium text-gray-500" for="nationality">
+                      Nationality
+                    </span>
+
+                    <input value="{{$user['fields']['all']['nationality']}}" class="w-full p-0 text-sm border-none focus:ring-0" name="nationality" id="nationality" type="text" placeholder="Canada" />
                   </label>
                 </div>
+                <div class="flex items-center justify-center">
+                    <div class="datepicker relative form-floating mb-3" data-mdb-toggle-button="false">
+                      <input value="{{$user['fields']['all']['birth_date']}}" type="text"
+                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Birth date" name="birthdate" data-mdb-toggle="datepicker" />
+                      <label for="floatingInput" class="text-gray-700">Birth date</label>
+                    </div>
 
-                <div>
-                  <input class="sr-only" id="option2" type="radio" tabindex="-1" />
-                  <label for="option2" class="block w-full p-3 border border-gray-200 rounded-lg" tabindex="0">
-                    <span class="text-sm font-medium"> Option 2 </span>
-                  </label>
                 </div>
-
-                <div>
-                  <input class="sr-only" id="option3" type="radio" tabindex="-1" />
-                  <label for="option3" class="block w-full p-3 border border-gray-200 rounded-lg" tabindex="0">
-                    <span class="text-sm font-medium"> Option 3 </span>
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <label class="sr-only" for="message">Message</label>
-                <textarea
-                  class="w-full p-3 text-sm border-gray-200 rounded-lg"
-                  placeholder="Message"
-                  rows="8"
-                  id="message"
-                ></textarea>
-              </div>
 
               <div class="mt-4">
                 <button
-                  type="submit"
-                  class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-black rounded-lg sm:w-auto"
+                  type="button"
+                  onclick="edituserinfo()"
+                  class="inline-flex items-center justify-center w-full px-5 py-3 text-white bg-blue-600 rounded-lg sm:w-auto"
                 >
-                  <span class="font-medium"> Send Enquiry </span>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5 ml-3"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  <span class="font-medium" > Edit Contact </span>
                 </button>
               </div>
             </form>
+            </div>
           </div>
     </div>
 </div>
+
+<script>
+    function edituserinfo(){
+        let id = {{$user['fields']['all']['id']}}
+        console.log(id)
+      $("#overlay").css("display", "block");
+        let form =  $('#editcontact').serialize();
+        axios.put('/edit-contact/'+id, form)
+    .then((res) => {
+        contacts = res.data
+        console.log(contacts)
+      $("#overlay").css("display", "none");
+      $('#message-box').css("display", "block");
+
+    })
+    .catch((error) => {
+      console.error(error)
+      $("#overlay").css("display", "none");
+    })
+    }
+</script>
+
+@endsection

@@ -1,7 +1,8 @@
 require('./bootstrap');
 
+
 // console.log('loading')
-// document.getElementById("overlay").style.display = "block";
+// $("#overlay").css("display", "block");
 // $(document).ready(getContacts);
 
 // function getContacts(){
@@ -18,11 +19,31 @@ require('./bootstrap');
 //     contacts = res.data.contact
 //     console.log(contacts)
 //   console.log('data loaded')
-//   document.getElementById("overlay").style.display = "none";
+//   $("#overlay").css("display", "none");
 
 // })
 // .catch((error) => {
 //   console.error(error)
-//   document.getElementById("overlay").style.display = "none";
+//   $("#overlay").css("display", "none");
 // })
 // }
+
+function addcontact(){
+        let form = document.forms.storecontact
+
+        console.log(form)
+    //     axios.post('/store-contact', )
+    // .then((res) => {
+    //     contacts = res.data.contact
+    //     console.log(contacts)
+    //   console.log('data loaded')
+    //   $("#overlay").css("display", "none");
+
+    // })
+    // .catch((error) => {
+    //   console.error(error)
+    //   $("#overlay").css("display", "none");
+    // })
+    }
+
+
