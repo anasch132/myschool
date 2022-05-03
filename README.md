@@ -11,5 +11,5 @@
 
 <h1>Setup project locally</h1>
 
-<p>Run Laravel app `php artisan serve`</p><br>
-<p>Run Webpack with `npm run watch`</p>
+> <p>Run Laravel app `php artisan serve`</p><br>
+> <p>Run Webpack with `npm run watch`</p>
