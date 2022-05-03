@@ -1,3 +1,4 @@
+<h1>Routes</h1>
 <h2>'/store-contact' :</h2> <p>make API call to mautic and store the new contact with the POST method</p><br>
 <h2>'/delete-contact/{id}':</h2> delete a contact by id with DELETE method</p><br>
 <h2>'/edit-contact/{id}':</h2> edit a contact informations by if with PUT method but PATCH for mautic API to prevent creating contact if not exits</p><br>
