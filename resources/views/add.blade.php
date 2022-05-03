@@ -93,7 +93,7 @@
                     <input onfocus="removeError(this)" class="w-full p-0 text-sm border-none focus:ring-0" name="nationality"  type="text" placeholder="Canada" />
                   </label>
                 </div>
-                <div class="flex items-start justify-start">
+                <div class="flex items-start justify-center">
                     <div class="datepicker form-floating mb-3 border-gray-200 relative block p-3 border-2 rounded-lg" data-mdb-toggle-button="false">
                       <input onfocus="removeError(this)" type="text"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border-none transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -144,11 +144,7 @@
     })
 }
 
-    function removeError(el) {
-        $(el).parent().removeClass('border-red-400')
-        $(el).parent().addClass('border-gray-200')
-        $(el).parent().find("p:last").remove();
-    }
+
 </script>
 
 @endsection

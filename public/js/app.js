@@ -2060,46 +2060,7 @@ module.exports = {
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // console.log('loading')
-// $("#overlay").css("display", "block");
-// $(document).ready(getContacts);
-// function getContacts(){
-//     let contacts = {}
-//     axios.get('https://egdev.crmforschools.net/api/contacts', {
-//   headers: {
-//     'Authorization': 'basic '+btoa(process.env.MIX_USER+':'+process.env.MIX_PASSUSER),
-//     'Access-Control-Allow-Origin' : '*',
-//     'Content-Type': 'application/json',
-//   },
-//   withCredentials: false,
-// })
-// .then((res) => {
-//     contacts = res.data.contact
-//     console.log(contacts)
-//   console.log('data loaded')
-//   $("#overlay").css("display", "none");
-// })
-// .catch((error) => {
-//   console.error(error)
-//   $("#overlay").css("display", "none");
-// })
-// }
-
-
-function addcontact() {
-  var form = document.forms.storecontact;
-  console.log(form); //     axios.post('/store-contact', )
-  // .then((res) => {
-  //     contacts = res.data.contact
-  //     console.log(contacts)
-  //   console.log('data loaded')
-  //   $("#overlay").css("display", "none");
-  // })
-  // .catch((error) => {
-  //   console.error(error)
-  //   $("#overlay").css("display", "none");
-  // })
-}
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 /***/ }),
 
@@ -2127,6 +2088,12 @@ var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/di
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.removeError = function (el) {
+  $(el).parent().removeClass('border-red-400');
+  $(el).parent().addClass('border-gray-200');
+  $(el).parent().find("p:last").remove();
+};
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
