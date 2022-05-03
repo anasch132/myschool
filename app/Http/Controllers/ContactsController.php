@@ -33,6 +33,9 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
+        // $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
+        // if ($request->email && !preg_match($regex, $request->email))
+        //     return Response()->json(['errors' => 'Invalid email address'], 400);
         $addcontact = Http::withHeaders([
             'Authorization' => 'Basic ' . base64_encode(env('MIX_USER') . ':' . env('MIX_PASSUSER')),
         ])->post('https://egdev.crmforschools.net/api/contacts/new', [
@@ -50,6 +53,7 @@ class ContactsController extends Controller
             'state' => $request->state,
             'nationality' => $request->nationality
         ]);
+
         return $addcontact;
     }
 
@@ -78,12 +82,12 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
+        if ($request->email != null && !preg_match($regex, $request->email))
+            return Response()->json(['error' => 'Invalid email address'], 400);
         $editcontact = Http::withHeaders([
             'Authorization' => 'Basic ' . base64_encode(env('MIX_USER') . ':' . env('MIX_PASSUSER')),
         ])->patch('https://egdev.crmforschools.net/api/contacts/' . $id . '/edit', [
-            'campus' => 'developer',
-            'contact_type' => 'Lead',
-            'owner' => '40',
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,

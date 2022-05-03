@@ -14,10 +14,10 @@ use App\Http\Controllers\ContactsController;
 |
 */
 
-Route::get('/', [ContactsController::class, 'index']);
 Route::post('/store-contact', [ContactsController::class, 'store']);
 Route::delete('/delete-contact/{id}', [ContactsController::class, 'destroy']);
 Route::put('/edit-contact/{id}', [ContactsController::class, 'update']);
+Route::get('/', [ContactsController::class, 'index']);
 Route::get('/edit/{id}', [ContactsController::class, 'show']);
 Route::get('/add', function () {
     return view('add');

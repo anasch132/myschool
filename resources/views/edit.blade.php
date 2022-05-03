@@ -122,7 +122,6 @@
 <script>
     function edituserinfo(){
         let id = {{$user['fields']['all']['id']}}
-        console.log(id)
       $("#overlay").css("display", "block");
         let form =  $('#editcontact').serialize();
         axios.put('/edit-contact/'+id, form)
@@ -134,9 +133,14 @@
 
     })
     .catch((error) => {
-      console.error(error)
-      $("#overlay").css("display", "none");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.response.data.error,
+        })
+        $("#overlay").css("display", "none");
     })
+
     }
 </script>
 
